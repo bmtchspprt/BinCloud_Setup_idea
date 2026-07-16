@@ -163,6 +163,14 @@
   .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
   .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
 
+  .inline-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
   /* Shape picker */
   .shape-group {
     display: grid;
@@ -408,43 +416,30 @@
 
         <!-- Step 1: Company -->
         <div class="step active" id="step-company">
-          <div class="field">
-            <label for="co-name">Company name</label>
-            <input id="co-name" type="text" placeholder="e.g. Acme Grain Co.">
+          <div class="field" style="margin-bottom:10px">
+            <input id="co-name" type="text" placeholder="Company name" aria-label="Company name">
           </div>
-          <div class="grid2">
-            <div class="field">
-              <label for="contact-name">Contact name</label>
-              <input id="contact-name" type="text" placeholder="e.g. Jane Miller">
-            </div>
-            <div class="field">
-              <label for="contact-email">Contact email</label>
-              <input id="contact-email" type="email" placeholder="jane@acmegrain.com">
-            </div>
+          <div class="grid2" style="margin-bottom:10px">
+            <input id="contact-name" type="text" placeholder="Contact name" aria-label="Contact name">
+            <input id="contact-email" type="email" placeholder="Contact email" aria-label="Contact email">
           </div>
-          <div class="field">
-            <label for="phone">Phone</label>
-            <input id="phone" type="tel" placeholder="(555) 555-0123">
+          <div class="field" style="margin-bottom:10px">
+            <input id="phone" type="tel" placeholder="Phone" aria-label="Phone">
           </div>
-          <div class="field">
-            <label for="site-addr">Site address</label>
-            <input id="site-addr" type="text" placeholder="Street address">
+          <div class="field" style="margin-bottom:10px">
+            <input id="site-addr" type="text" placeholder="Site address" aria-label="Site address">
           </div>
-          <div class="grid3" style="margin-bottom:1rem">
+          <div class="grid3" style="margin-bottom:14px">
             <input id="site-city" type="text" placeholder="City" aria-label="City">
             <input id="site-state" type="text" placeholder="State" aria-label="State">
             <input id="site-zip" type="text" placeholder="ZIP" aria-label="ZIP">
           </div>
-          <div class="field">
-            <div class="section-title">New setup or addition?</div>
-            <div class="chip-group" id="setup-kind-group">
+          <div class="inline-row" style="margin-bottom:14px">
+            <div class="chip-group" id="setup-kind-group" style="flex-wrap:nowrap">
               <div class="chip" data-val="New setup" onclick="pickChip(this,'setupKind')">New setup</div>
-              <div class="chip" data-val="Addition to existing system" onclick="pickChip(this,'setupKind')">Addition to existing system</div>
+              <div class="chip" data-val="Addition to existing system" onclick="pickChip(this,'setupKind')">Addition to existing</div>
             </div>
-          </div>
-          <div class="field">
-            <label for="sensor-count">Number of sensors</label>
-            <input id="sensor-count" type="number" min="1" placeholder="e.g. 4">
+            <input id="sensor-count" type="number" min="1" placeholder="# of sensors" aria-label="Number of sensors" style="width:130px">
           </div>
           <div class="field">
             <div class="section-title">Sensor type</div>
@@ -647,14 +642,6 @@ function createVesselStep(n) {
     <div class="field">
       <label for="v${n}-site">Site address <span class="label-hint">— from Step 1, editable for this vessel</span></label>
       <input id="v${n}-site" type="text" value="">
-    </div>
-
-    <div class="field">
-      <div class="section-title">Liquid or solid</div>
-      <div class="chip-group" id="v${n}-phase">
-        <div class="chip" data-val="Liquid" onclick="pickVesselChip(this, ${n}, 'phase')">Liquid</div>
-        <div class="chip" data-val="Solid" onclick="pickVesselChip(this, ${n}, 'phase')">Solid</div>
-      </div>
     </div>
 
     <div class="subcard">
