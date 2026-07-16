@@ -12,10 +12,10 @@
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
-    --green: #1D9E75;
-    --green-dark: #0F6E56;
-    --green-light: #E1F5EE;
-    --green-text: #085041;
+    --maroon: #7A1E2E;
+    --maroon-dark: #5A121F;
+    --maroon-light: #F7E9EC;
+    --maroon-text: #56101D;
     --bg: #f5f6f7;
     --surface: #ffffff;
     --border: rgba(0,0,0,0.1);
@@ -53,7 +53,7 @@
     border-radius: var(--radius-lg);
     border: 0.5px solid var(--border);
     width: 100%;
-    max-width: 560px;
+    max-width: 600px;
     box-shadow: 0 8px 40px rgba(0,0,0,0.18);
     overflow: hidden;
   }
@@ -77,11 +77,11 @@
   }
 
   .progress-bar { height: 3px; background: #e8e9ea; }
-  .progress-fill { height: 3px; background: var(--green); transition: width 0.35s ease; }
+  .progress-fill { height: 3px; background: var(--maroon); transition: width 0.35s ease; }
 
   .modal-body {
     padding: 1.25rem 1.5rem;
-    max-height: 460px;
+    max-height: 480px;
     overflow-y: auto;
   }
 
@@ -120,9 +120,11 @@
   }
 
   input:focus, select:focus {
-    border-color: var(--green);
-    box-shadow: 0 0 0 3px rgba(29,158,117,0.12);
+    border-color: var(--maroon);
+    box-shadow: 0 0 0 3px rgba(122,30,46,0.12);
   }
+
+  input[readonly] { background: #f3f3f4; color: var(--text-muted); }
 
   .chip-group { display: flex; flex-wrap: wrap; gap: 8px; }
 
@@ -139,12 +141,12 @@
     user-select: none;
   }
 
-  .chip:hover { border-color: var(--green); color: var(--green-text); }
+  .chip:hover { border-color: var(--maroon); color: var(--maroon-text); }
 
   .chip.selected {
-    border-color: var(--green);
-    background: var(--green-light);
-    color: var(--green-text);
+    border-color: var(--maroon);
+    background: var(--maroon-light);
+    color: var(--maroon-text);
     font-weight: 500;
   }
 
@@ -158,86 +160,73 @@
     margin-top: 4px;
   }
 
-  .addr-card {
-    border: 0.5px solid var(--border);
-    border-radius: var(--radius);
-    padding: 1rem;
-    margin-bottom: .75rem;
-    background: #fafafa;
-  }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
 
-  .addr-card h4 {
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--text);
-    margin-bottom: 10px;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-  }
-
-  .sensor-toggle {
-    display: flex;
-    align-items: center;
+  /* Shape picker */
+  .shape-group {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
     gap: 8px;
-    margin-top: 10px;
-    padding-top: 10px;
-    border-top: 0.5px solid var(--border);
   }
 
-  .sensor-toggle label {
-    font-size: 12px;
+  .shape-opt {
+    border: 0.5px solid var(--border-md);
+    border-radius: var(--radius);
+    padding: 8px 4px 6px;
+    cursor: pointer;
+    text-align: center;
     color: var(--text-muted);
-    margin: 0;
-    cursor: pointer;
-    font-weight: 400;
+    background: var(--surface);
+    transition: all 0.15s;
+    user-select: none;
   }
 
-  .toggle { position: relative; width: 36px; height: 20px; flex-shrink: 0; }
-  .toggle input { opacity: 0; width: 0; height: 0; }
-  .slider { position: absolute; inset: 0; background: #ccc; border-radius: 20px; transition: .2s; cursor: pointer; }
-  .slider:before { content: ''; position: absolute; width: 14px; height: 14px; left: 3px; top: 3px; background: #fff; border-radius: 50%; transition: .2s; }
-  .toggle input:checked + .slider { background: var(--green); }
-  .toggle input:checked + .slider:before { transform: translateX(16px); }
+  .shape-opt:hover { border-color: var(--maroon); color: var(--maroon-text); }
 
-  .add-btn {
-    display: inline-flex;
+  .shape-opt.selected {
+    border-color: var(--maroon);
+    background: var(--maroon-light);
+    color: var(--maroon-text);
+  }
+
+  .shape-opt svg { display: block; margin: 0 auto 4px; }
+
+  .shape-opt span {
+    font-size: 10px;
+    line-height: 1.2;
+    display: block;
+    font-weight: 500;
+  }
+
+  .vessel-hero {
+    display: flex;
     align-items: center;
-    gap: 6px;
-    font-size: 13px;
-    font-family: inherit;
-    color: var(--green);
-    cursor: pointer;
-    padding: 6px 0;
-    border: none;
-    background: none;
-    margin-top: 4px;
+    gap: 10px;
+    margin-bottom: 1rem;
   }
 
-  .add-btn:hover { color: var(--green-dark); }
+  .vessel-hero i { font-size: 22px; color: var(--maroon); }
 
-  .vessel-card {
+  .vessel-hero h3 { font-size: 15px; font-weight: 600; color: var(--text); }
+
+  .subcard {
     border: 0.5px solid var(--border);
     border-radius: var(--radius);
-    padding: 1rem;
+    padding: .9rem 1rem;
     margin-bottom: 1rem;
     background: #fafafa;
   }
 
-  .vessel-card h3 {
-    font-size: 14px;
-    font-weight: 600;
-    color: var(--text);
-    margin-bottom: 12px;
-    display: flex;
-    align-items: center;
-    gap: 6px;
+  .ma-box {
+    background: var(--maroon-light);
+    border-left: 3px solid var(--maroon);
+    border-radius: var(--radius);
+    padding: .85rem 1rem;
+    margin-bottom: 1rem;
   }
 
-  .vessel-card h3 i { color: var(--green); }
-
-  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-  .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
+  .ma-box .section-title { color: var(--maroon-text); margin-top: 0; }
 
   .modal-footer {
     padding: 1rem 1.5rem;
@@ -267,7 +256,7 @@
     font-family: inherit;
     font-weight: 500;
     color: #fff;
-    background: var(--green);
+    background: var(--maroon);
     border: none;
     padding: 9px 20px;
     border-radius: var(--radius);
@@ -278,30 +267,27 @@
     transition: background 0.15s;
   }
 
-  .btn-next:hover { background: var(--green-dark); }
+  .btn-next:hover { background: var(--maroon-dark); }
 
   .step-label { font-size: 12px; color: var(--text-hint); }
 
   .info-box {
-    background: var(--green-light);
+    background: var(--maroon-light);
     border-radius: var(--radius);
     padding: .75rem 1rem;
     font-size: 13px;
-    color: var(--green-text);
+    color: var(--maroon-text);
     line-height: 1.6;
     margin-bottom: 1rem;
-    border-left: 3px solid var(--green);
+    border-left: 3px solid var(--maroon);
   }
 
-  .pin-screen {
-    text-align: center;
-    padding: 2rem 1.5rem 1.5rem;
-  }
+  .pin-screen { text-align: center; padding: 2rem 1.5rem 1.5rem; }
 
   .pin-logo {
     width: 56px;
     height: 56px;
-    background: var(--green-light);
+    background: var(--maroon-light);
     border-radius: 14px;
     display: flex;
     align-items: center;
@@ -309,14 +295,9 @@
     margin: 0 auto 1.25rem;
   }
 
-  .pin-logo i { font-size: 28px; color: var(--green); }
+  .pin-logo i { font-size: 28px; color: var(--maroon); }
 
-  .pin-screen h2 {
-    font-size: 18px;
-    font-weight: 600;
-    color: var(--text);
-    margin-bottom: 6px;
-  }
+  .pin-screen h2 { font-size: 18px; font-weight: 600; color: var(--text); margin-bottom: 6px; }
 
   .pin-screen p {
     font-size: 13px;
@@ -325,12 +306,7 @@
     line-height: 1.55;
   }
 
-  .pin-dots {
-    display: flex;
-    justify-content: center;
-    gap: 12px;
-    margin-bottom: 1.5rem;
-  }
+  .pin-dots { display: flex; justify-content: center; gap: 12px; margin-bottom: 1.5rem; }
 
   .pin-dot {
     width: 48px;
@@ -344,20 +320,15 @@
     background: var(--surface);
     outline: none;
     transition: border-color 0.15s, box-shadow 0.15s;
-    caret-color: var(--green);
+    caret-color: var(--maroon);
   }
 
   .pin-dot:focus {
-    border-color: var(--green);
-    box-shadow: 0 0 0 3px rgba(29,158,117,0.12);
+    border-color: var(--maroon);
+    box-shadow: 0 0 0 3px rgba(122,30,46,0.12);
   }
 
-  .pin-error {
-    font-size: 13px;
-    color: #c0392b;
-    margin-bottom: 1rem;
-    min-height: 20px;
-  }
+  .pin-error { font-size: 13px; color: #c0392b; margin-bottom: 1rem; min-height: 20px; }
 
   .btn-begin {
     width: 100%;
@@ -365,7 +336,7 @@
     font-family: inherit;
     font-weight: 500;
     color: #fff;
-    background: var(--green);
+    background: var(--maroon);
     border: none;
     padding: 11px 20px;
     border-radius: var(--radius);
@@ -377,7 +348,7 @@
     transition: background 0.15s;
   }
 
-  .btn-begin:hover { background: var(--green-dark); }
+  .btn-begin:hover { background: var(--maroon-dark); }
 
   .review-row {
     display: flex;
@@ -386,10 +357,16 @@
     border-bottom: 0.5px solid var(--border);
     font-size: 13px;
     color: var(--text-muted);
+    gap: 16px;
   }
 
   .review-row:last-child { border-bottom: none; }
-  .review-row span:last-child { color: var(--text); font-weight: 500; }
+  .review-row span:last-child { color: var(--text); font-weight: 500; text-align: right; }
+
+  @media (max-width: 520px) {
+    .shape-group { grid-template-columns: repeat(3, 1fr); }
+    .grid3 { grid-template-columns: 1fr; }
+  }
 </style>
 </head>
 <body>
@@ -420,77 +397,85 @@
     <div id="setup-wizard" style="display:none">
       <div class="modal-header">
         <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px">
-          <i class="ti ti-building-warehouse" style="font-size:22px;color:var(--green)" aria-hidden="true"></i>
+          <i class="ti ti-building-warehouse" style="font-size:22px;color:var(--maroon)" aria-hidden="true"></i>
           <h2>Let's set up your vessels in BinCloud</h2>
         </div>
-        <p>This takes about 5 minutes per vessel. We'll walk you through company details, locations, and bin specifications.</p>
+        <p>This takes about 5 minutes per vessel. We'll walk you through company details, then define each vessel one at a time.</p>
       </div>
-      <div class="progress-bar"><div class="progress-fill" id="prog" style="width:25%"></div></div>
+      <div class="progress-bar"><div class="progress-fill" id="prog" style="width:10%"></div></div>
 
-      <div class="modal-body">
+      <div class="modal-body" id="modal-body">
 
-        <!-- Step 1 -->
-        <div class="step active" id="step1">
+        <!-- Step 1: Company -->
+        <div class="step active" id="step-company">
           <div class="field">
             <label for="co-name">Company name</label>
             <input id="co-name" type="text" placeholder="e.g. Acme Grain Co.">
           </div>
-          <div class="field">
-            <div class="section-title">Sensor type</div>
-            <div class="chip-group" id="sensor-type-group">
-              <div class="chip" data-val="CNCR" onclick="toggleChip(this,'type')">CNCR</div>
-              <div class="chip" data-val="NCR" onclick="toggleChip(this,'type')">NCR</div>
-              <div class="chip" data-val="SmartBob" onclick="toggleChip(this,'type')">SmartBob</div>
-              <div class="chip" data-val="Other" onclick="toggleChip(this,'type')">Other</div>
+          <div class="grid2">
+            <div class="field">
+              <label for="contact-name">Contact name</label>
+              <input id="contact-name" type="text" placeholder="e.g. Jane Miller">
+            </div>
+            <div class="field">
+              <label for="contact-email">Contact email</label>
+              <input id="contact-email" type="email" placeholder="jane@acmegrain.com">
             </div>
           </div>
           <div class="field">
-            <div class="section-title">Sensor protocol</div>
-            <div class="chip-group" id="sensor-proto-group">
-              <div class="chip" data-val="HART" onclick="toggleChip(this,'proto')">HART</div>
-              <div class="chip" data-val="Modbus" onclick="toggleChip(this,'proto')">Modbus</div>
-              <div class="chip" data-val="4–20 mA" onclick="toggleChip(this,'proto')">4–20 mA</div>
+            <label for="phone">Phone</label>
+            <input id="phone" type="tel" placeholder="(555) 555-0123">
+          </div>
+          <div class="field">
+            <label for="site-addr">Site address</label>
+            <input id="site-addr" type="text" placeholder="Street address">
+          </div>
+          <div class="grid3" style="margin-bottom:1rem">
+            <input id="site-city" type="text" placeholder="City" aria-label="City">
+            <input id="site-state" type="text" placeholder="State" aria-label="State">
+            <input id="site-zip" type="text" placeholder="ZIP" aria-label="ZIP">
+          </div>
+          <div class="field">
+            <div class="section-title">New setup or addition?</div>
+            <div class="chip-group" id="setup-kind-group">
+              <div class="chip" data-val="New setup" onclick="pickChip(this,'setupKind')">New setup</div>
+              <div class="chip" data-val="Addition to existing system" onclick="pickChip(this,'setupKind')">Addition to existing system</div>
             </div>
           </div>
           <div class="field">
             <label for="sensor-count">Number of sensors</label>
             <input id="sensor-count" type="number" min="1" placeholder="e.g. 4">
           </div>
-        </div>
-
-        <!-- Step 2 -->
-        <div class="step" id="step2">
-          <div class="info-box">
-            <i class="ti ti-info-circle" aria-hidden="true" style="margin-right:4px"></i>
-            Some sensors from multiple locations can be monitored by your software. Help us identify which addresses get sensors.
+          <div class="field">
+            <div class="section-title">Sensor type</div>
+            <div class="chip-group" id="sensor-type-group">
+              <div class="chip" data-val="CNCR" onclick="pickChip(this,'sensorType')">CNCR</div>
+              <div class="chip" data-val="NCR" onclick="pickChip(this,'sensorType')">NCR</div>
+              <div class="chip" data-val="SmartBob" onclick="pickChip(this,'sensorType')">SmartBob</div>
+              <div class="chip" data-val="4-20 mA" onclick="pickChip(this,'sensorType')">4–20 mA</div>
+              <div class="chip" data-val="Other" onclick="pickChip(this,'sensorType')">Other</div>
+            </div>
           </div>
-          <div id="addresses"></div>
-          <button class="add-btn" onclick="addAddress()" id="add-addr-btn">
-            <i class="ti ti-plus" aria-hidden="true"></i> Add another location
-          </button>
+          <div class="field">
+            <div class="section-title">Sensor protocol</div>
+            <div class="chip-group" id="sensor-proto-group">
+              <div class="chip" data-val="HART" onclick="pickChip(this,'sensorProto')">HART</div>
+              <div class="chip" data-val="Modbus" onclick="pickChip(this,'sensorProto')">Modbus</div>
+              <div class="chip" data-val="4-20 mA" onclick="pickChip(this,'sensorProto')">4–20 mA</div>
+            </div>
+          </div>
         </div>
 
-        <!-- Step 3 -->
-        <div class="step" id="step3">
-          <div id="bins-container"></div>
-          <button class="add-btn" onclick="addBin()">
-            <i class="ti ti-plus" aria-hidden="true"></i> Add another bin
-          </button>
-        </div>
+        <!-- Vessel steps are inserted here dynamically -->
 
-        <!-- Step 4 -->
-        <div class="step" id="step4">
+        <!-- Review step -->
+        <div class="step" id="step-review">
           <div style="text-align:center;padding:1rem 0 1.25rem">
-            <i class="ti ti-circle-check" style="font-size:52px;color:var(--green)" aria-hidden="true"></i>
+            <i class="ti ti-circle-check" style="font-size:52px;color:var(--maroon)" aria-hidden="true"></i>
             <h3 style="font-size:17px;font-weight:600;margin:12px 0 6px;color:var(--text)">Ready to activate</h3>
             <p style="font-size:13px;color:var(--text-muted);line-height:1.6">Your vessel configuration is complete. BinCloud will begin syncing sensor data as soon as your devices come online.</p>
           </div>
-          <div style="background:#fafafa;border:0.5px solid var(--border);border-radius:var(--radius);padding:1rem;">
-            <div class="review-row"><span>Company</span><span id="rev-co">—</span></div>
-            <div class="review-row"><span>Sensor type</span><span id="rev-type">—</span></div>
-            <div class="review-row"><span>Protocol</span><span id="rev-proto">—</span></div>
-            <div class="review-row"><span>Locations</span><span id="rev-locs">—</span></div>
-            <div class="review-row"><span>Bins configured</span><span id="rev-bins">—</span></div>
+          <div style="background:#fafafa;border:0.5px solid var(--border);border-radius:var(--radius);padding:1rem;" id="review-box">
           </div>
         </div>
 
@@ -499,7 +484,7 @@
       <div class="modal-footer">
         <button class="btn-back" id="btn-back" onclick="prevStep()" style="display:none">Back</button>
         <div style="display:flex;align-items:center;gap:12px">
-          <span class="step-label" id="step-label">Step 1 of 4</span>
+          <span class="step-label" id="step-label">Step 1</span>
           <button class="btn-next" id="btn-next" onclick="nextStep()">
             Continue <i class="ti ti-arrow-right" aria-hidden="true"></i>
           </button>
@@ -525,18 +510,40 @@ const MATERIALS = [
   'Cement','Gravel','Wood Chips','Water','Plastic Pellets','Other'
 ];
 
-let currentStep = 1;
-let addrCount = 0;
-let binCount = 0;
-let selectedTypes = [];
-let selectedProtos = [];
+const SENSOR_TYPES = ['CNCR','NCR','SmartBob','4-20 mA','Other'];
 
-const pinInputs = [
-  document.getElementById('p0'),
-  document.getElementById('p1'),
-  document.getElementById('p2'),
-  document.getElementById('p3')
-];
+/* Small inline SVG shape icons (stroke follows text color) */
+const SHAPES = {
+  'Cylindrical': `<svg width="34" height="34" viewBox="0 0 34 34" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+    <ellipse cx="17" cy="8" rx="9" ry="3.5"/>
+    <path d="M8 8 v18 a9 3.5 0 0 0 18 0 V8"/>
+  </svg>`,
+  'Cone bottom': `<svg width="34" height="34" viewBox="0 0 34 34" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+    <ellipse cx="17" cy="7" rx="9" ry="3"/>
+    <path d="M8 7 v13 l9 10 9 -10 V7"/>
+  </svg>`,
+  'Rectangular': `<svg width="34" height="34" viewBox="0 0 34 34" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+    <rect x="8" y="6" width="18" height="22" rx="1"/>
+  </svg>`,
+  'Truncated cone': `<svg width="34" height="34" viewBox="0 0 34 34" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+    <path d="M12 6 h10 l5 22 h-20 z"/>
+  </svg>`,
+  'Octagonal': `<svg width="34" height="34" viewBox="0 0 34 34" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+    <polygon points="12,5 22,5 29,12 29,22 22,29 12,29 5,22 5,12"/>
+  </svg>`,
+  'Dome': `<svg width="34" height="34" viewBox="0 0 34 34" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+    <path d="M6 17 a11 11 0 0 1 22 0"/>
+    <path d="M6 17 h22 v11 h-22 z"/>
+  </svg>`
+};
+
+let company = { setupKind: '', sensorType: '', sensorProto: '' };
+let vessels = [];            // vessel data objects
+let stepOrder = ['company']; // 'company', 1, 2, 3, ..., 'review'
+let currentIdx = 0;
+
+/* ---------- PIN ---------- */
+const pinInputs = [0,1,2,3].map(i => document.getElementById('p' + i));
 
 pinInputs.forEach((inp, i) => {
   inp.addEventListener('input', () => {
@@ -554,8 +561,6 @@ function checkPin() {
   if(pin === CORRECT_PIN) {
     document.getElementById('pin-screen').style.display = 'none';
     document.getElementById('setup-wizard').style.display = 'block';
-    addAddress();
-    addBin();
   } else {
     document.getElementById('pin-error').textContent = 'Incorrect PIN. Please try again.';
     pinInputs.forEach(i => i.value = '');
@@ -564,114 +569,270 @@ function checkPin() {
   }
 }
 
-function toggleChip(el, group) {
-  const arr = group === 'type' ? selectedTypes : selectedProtos;
-  const v = el.dataset.val;
-  el.classList.toggle('selected');
-  const idx = arr.indexOf(v);
-  if(idx > -1) arr.splice(idx,1); else arr.push(v);
+/* ---------- Step 1 chips (single-select per group) ---------- */
+function pickChip(el, key) {
+  el.parentElement.querySelectorAll('.chip').forEach(c => c.classList.remove('selected'));
+  el.classList.add('selected');
+  company[key] = el.dataset.val;
 }
 
-function makeAddrCard(n) {
-  return `<div class="addr-card" id="addr-card-${n}">
-    <h4><i class="ti ti-map-pin" style="color:var(--green)" aria-hidden="true"></i> Location ${n}</h4>
-    <div class="field" style="margin-bottom:8px">
-      <input type="text" placeholder="Street address">
-    </div>
-    <div class="grid3" style="margin-bottom:8px">
-      <input type="text" placeholder="City">
-      <input type="text" placeholder="State">
-      <input type="text" placeholder="ZIP">
-    </div>
-    <div class="field" style="margin-bottom:8px">
-      <input type="text" placeholder="Contact name">
-    </div>
-    <div class="grid2">
-      <input type="tel" placeholder="Phone">
-      <input type="email" placeholder="Email">
-    </div>
-    <div class="sensor-toggle">
-      <label class="toggle">
-        <input type="checkbox" checked>
-        <span class="slider"></span>
-      </label>
-      <label>Sensors at this location</label>
-    </div>
-  </div>`;
+/* ---------- Vessel step creation ---------- */
+function fullSiteAddress() {
+  const parts = [
+    document.getElementById('site-addr').value,
+    document.getElementById('site-city').value,
+    document.getElementById('site-state').value,
+    document.getElementById('site-zip').value
+  ].filter(Boolean);
+  return parts.join(', ');
 }
 
-function addAddress() {
-  addrCount++;
-  document.getElementById('addresses').insertAdjacentHTML('beforeend', makeAddrCard(addrCount));
-  if(addrCount >= 3) document.getElementById('add-addr-btn').style.display = 'none';
+function sensorAddressFor(n, type) {
+  return type === '4-20 mA' ? 0 : n;
 }
 
-function makeBinCard(n) {
-  const opts = MATERIALS.map(m => `<option value="${m}">${m}</option>`).join('');
-  return `<div class="vessel-card" id="bin-card-${n}">
-    <h3><i class="ti ti-cylinder" aria-hidden="true"></i> <span id="bin-lbl-${n}">Bin ${n}</span></h3>
+function createVesselStep(n) {
+  const type = company.sensorType || '';
+  vessels.push({ n });
+
+  const matOpts = MATERIALS.map(m => `<option value="${m}">${m}</option>`).join('');
+  const typeOpts = SENSOR_TYPES.map(t =>
+    `<option value="${t}" ${t === type ? 'selected' : ''}>${t === '4-20 mA' ? '4–20 mA' : t}</option>`).join('');
+  const shapeOpts = Object.keys(SHAPES).map(s =>
+    `<div class="shape-opt" data-val="${s}" onclick="pickShape(this, ${n})" role="button" tabindex="0"
+       onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();pickShape(this, ${n});}">
+       ${SHAPES[s]}<span>${s}</span>
+     </div>`).join('');
+
+  const html = `<div class="step" id="step-vessel-${n}">
+    <div class="vessel-hero">
+      <i class="ti ti-cylinder" aria-hidden="true"></i>
+      <h3>Let's define Vessel ${n}</h3>
+    </div>
+
     <div class="field">
-      <label>Bin name / ID</label>
-      <input type="text" placeholder="e.g. North Bin A"
-        oninput="document.getElementById('bin-lbl-${n}').textContent=this.value||'Bin ${n}'">
+      <label for="v${n}-name">Vessel name</label>
+      <input id="v${n}-name" type="text" placeholder="e.g. North Bin A">
     </div>
-    <div class="grid2">
-      <div class="field"><label>Diameter (ft)</label><input type="number" placeholder="e.g. 30"></div>
-      <div class="field"><label>Height (ft)</label><input type="number" placeholder="e.g. 40"></div>
-    </div>
+
     <div class="grid2">
       <div class="field">
-        <label>Material stored</label>
-        <select onchange="autoFillDensity(this, ${n})">
-          <option value="">Select…</option>${opts}
+        <label for="v${n}-material">Material stored</label>
+        <select id="v${n}-material" onchange="autoFillDensity(this, ${n})">
+          <option value="">Select…</option>${matOpts}
         </select>
       </div>
       <div class="field">
-        <label>Density (lbs/cu ft) <span class="label-hint">— edit if your material differs</span></label>
-        <input type="number" id="density-${n}" placeholder="auto-filled">
+        <label for="v${n}-density">Density (lbs/cu ft) <span class="label-hint">— edit if needed</span></label>
+        <input id="v${n}-density" type="number" placeholder="auto-filled">
+      </div>
+    </div>
+
+    <div class="grid2">
+      <div class="field">
+        <label for="v${n}-sensor-type">Sensor type <span class="label-hint">— from Step 1, editable</span></label>
+        <select id="v${n}-sensor-type" onchange="onVesselSensorType(${n})">${typeOpts}</select>
+      </div>
+      <div class="field">
+        <label for="v${n}-addr">Sensor address <span class="label-hint">— set automatically</span></label>
+        <input id="v${n}-addr" type="number" readonly value="${sensorAddressFor(n, type)}">
+      </div>
+    </div>
+
+    <div class="field">
+      <div class="section-title">Shape</div>
+      <div class="shape-group" id="v${n}-shapes">${shapeOpts}</div>
+    </div>
+
+    <div class="field">
+      <label for="v${n}-site">Site address <span class="label-hint">— from Step 1, editable for this vessel</span></label>
+      <input id="v${n}-site" type="text" value="">
+    </div>
+
+    <div class="field">
+      <div class="section-title">Liquid or solid</div>
+      <div class="chip-group" id="v${n}-phase">
+        <div class="chip" data-val="Liquid" onclick="pickVesselChip(this, ${n}, 'phase')">Liquid</div>
+        <div class="chip" data-val="Solid" onclick="pickVesselChip(this, ${n}, 'phase')">Solid</div>
+      </div>
+    </div>
+
+    <div class="subcard">
+      <div class="section-title">Vessel ${n} dimensions (ft / degrees)</div>
+      <div class="grid2">
+        <div class="field"><label>Diameter (ft)</label><input id="v${n}-dia" type="number" placeholder="e.g. 30"></div>
+        <div class="field"><label>Height (ft)</label><input id="v${n}-hgt" type="number" placeholder="e.g. 40"></div>
+      </div>
+      <div class="grid2">
+        <div class="field"><label>Top cone height (ft)</label><input id="v${n}-tch" type="number" placeholder="e.g. 8"></div>
+        <div class="field"><label>Top cone angle (°)</label><input id="v${n}-tca" type="number" placeholder="e.g. 30"></div>
+      </div>
+      <div class="grid2" style="margin-bottom:0">
+        <div class="field" style="margin-bottom:0"><label>Bottom cone height (ft)</label><input id="v${n}-bch" type="number" placeholder="e.g. 6"></div>
+        <div class="field" style="margin-bottom:0"><label>Bottom cone angle (°)</label><input id="v${n}-bca" type="number" placeholder="e.g. 45"></div>
+      </div>
+    </div>
+
+    <div class="ma-box" id="v${n}-ma" style="display:none">
+      <div class="section-title">4–20 mA calibration</div>
+      <div class="grid2" style="margin-bottom:0">
+        <div class="field" style="margin-bottom:0">
+          <label>4–20 mA distance when empty (ft)</label>
+          <input id="v${n}-ma-empty" type="number" placeholder="e.g. 40">
+        </div>
+        <div class="field" style="margin-bottom:0">
+          <label>4–20 mA distance when full (ft)</label>
+          <input id="v${n}-ma-full" type="number" placeholder="e.g. 2">
+        </div>
+      </div>
+    </div>
+
+    <div class="field" style="margin-bottom:0">
+      <div class="section-title">Add another sensor?</div>
+      <div class="chip-group" id="v${n}-more">
+        <div class="chip" data-val="Yes" onclick="pickVesselChip(this, ${n}, 'more')">Yes</div>
+        <div class="chip" data-val="No" onclick="pickVesselChip(this, ${n}, 'more')">No, I'm done</div>
       </div>
     </div>
   </div>`;
+
+  document.getElementById('step-review').insertAdjacentHTML('beforebegin', html);
+  document.getElementById(`v${n}-site`).value = fullSiteAddress();
+  onVesselSensorType(n);
+  return n;
+}
+
+function onVesselSensorType(n) {
+  const type = document.getElementById(`v${n}-sensor-type`).value;
+  document.getElementById(`v${n}-addr`).value = sensorAddressFor(n, type);
+  document.getElementById(`v${n}-ma`).style.display = (type === '4-20 mA') ? '' : 'none';
 }
 
 function autoFillDensity(sel, n) {
   const d = DENSITIES[sel.value];
-  const inp = document.getElementById('density-' + n);
+  const inp = document.getElementById(`v${n}-density`);
   if(d !== undefined && d !== '') { inp.value = d; }
   else { inp.value = ''; inp.placeholder = 'Enter density'; }
 }
 
-function addBin() {
-  binCount++;
-  document.getElementById('bins-container').insertAdjacentHTML('beforeend', makeBinCard(binCount));
+function pickShape(el, n) {
+  document.getElementById(`v${n}-shapes`).querySelectorAll('.shape-opt').forEach(s => s.classList.remove('selected'));
+  el.classList.add('selected');
+  vessels[n-1].shape = el.dataset.val;
 }
 
-function showStep(n) {
+function pickVesselChip(el, n, key) {
+  el.parentElement.querySelectorAll('.chip').forEach(c => c.classList.remove('selected'));
+  el.classList.add('selected');
+  vessels[n-1][key] = el.dataset.val;
+}
+
+/* ---------- Navigation ---------- */
+function stepElId(step) {
+  if(step === 'company') return 'step-company';
+  if(step === 'review') return 'step-review';
+  return 'step-vessel-' + step;
+}
+
+function render() {
   document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
-  document.getElementById('step' + n).classList.add('active');
-  document.getElementById('prog').style.width = (n / 4 * 100) + '%';
-  document.getElementById('step-label').textContent = 'Step ' + n + ' of 4';
-  document.getElementById('btn-back').style.display = n > 1 ? '' : 'none';
+  const step = stepOrder[currentIdx];
+  document.getElementById(stepElId(step)).classList.add('active');
+  document.getElementById('modal-body').scrollTop = 0;
+
+  // Progress: company + known vessels + review
+  const total = stepOrder.length + (stepOrder.includes('review') ? 0 : 1);
+  document.getElementById('prog').style.width = ((currentIdx + 1) / total * 100) + '%';
+
+  // Labels
+  const lbl = document.getElementById('step-label');
+  if(step === 'company') lbl.textContent = 'Step 1 · Company';
+  else if(step === 'review') lbl.textContent = 'Final step · Review';
+  else lbl.textContent = `Step ${currentIdx + 1} · Vessel ${step}`;
+
+  document.getElementById('btn-back').style.display = currentIdx > 0 ? '' : 'none';
+
   const nb = document.getElementById('btn-next');
-  if(n === 4) {
+  if(step === 'review') {
     nb.innerHTML = 'Finish setup <i class="ti ti-check" aria-hidden="true"></i>';
-    document.getElementById('rev-co').textContent = document.getElementById('co-name').value || '—';
-    document.getElementById('rev-type').textContent = selectedTypes.length ? selectedTypes.join(', ') : '—';
-    document.getElementById('rev-proto').textContent = selectedProtos.length ? selectedProtos.join(', ') : '—';
-    document.getElementById('rev-locs').textContent = addrCount;
-    document.getElementById('rev-bins').textContent = binCount;
+    buildReview();
   } else {
     nb.innerHTML = 'Continue <i class="ti ti-arrow-right" aria-hidden="true"></i>';
   }
 }
 
 function nextStep() {
-  if(currentStep < 4) { currentStep++; showStep(currentStep); }
-  else { alert('Setup complete! BinCloud is ready to activate your vessels.'); }
+  const step = stepOrder[currentIdx];
+
+  if(step === 'company') {
+    // First vessel step (create on first visit)
+    if(stepOrder.length === 1) {
+      createVesselStep(1);
+      stepOrder.push(1);
+    }
+    currentIdx++;
+    render();
+    return;
+  }
+
+  if(step === 'review') {
+    alert('Setup complete! BinCloud is ready to activate your vessels.');
+    return;
+  }
+
+  // Vessel step: branch on "Add another sensor?"
+  const v = vessels[step - 1];
+  if(!v.more) {
+    alert('Please answer "Add another sensor?" before continuing.');
+    return;
+  }
+
+  if(v.more === 'Yes') {
+    const nextN = step + 1;
+    if(!stepOrder.includes(nextN)) {
+      // If a review marker exists after this point, remove it first
+      const rIdx = stepOrder.indexOf('review');
+      if(rIdx > -1) stepOrder.splice(rIdx, 1);
+      if(!document.getElementById('step-vessel-' + nextN)) createVesselStep(nextN);
+      stepOrder.splice(currentIdx + 1, 0, nextN);
+    }
+    currentIdx++;
+  } else {
+    if(!stepOrder.includes('review')) stepOrder.push('review');
+    currentIdx = stepOrder.indexOf('review');
+  }
+  render();
 }
 
 function prevStep() {
-  if(currentStep > 1) { currentStep--; showStep(currentStep); }
+  if(currentIdx > 0) { currentIdx--; render(); }
+}
+
+/* ---------- Review ---------- */
+function buildReview() {
+  const box = document.getElementById('review-box');
+  const rows = [];
+  const val = id => document.getElementById(id).value || '—';
+
+  rows.push(['Company', val('co-name')]);
+  rows.push(['Contact', `${val('contact-name')} · ${val('contact-email')}`]);
+  rows.push(['Phone', val('phone')]);
+  rows.push(['Site', fullSiteAddress() || '—']);
+  rows.push(['Setup', company.setupKind || '—']);
+  rows.push(['Sensors planned', val('sensor-count')]);
+  rows.push(['Sensor type', company.sensorType ? company.sensorType.replace('4-20','4–20') : '—']);
+  rows.push(['Protocol', company.sensorProto ? company.sensorProto.replace('4-20','4–20') : '—']);
+  rows.push(['Vessels configured', vessels.length]);
+
+  vessels.forEach(v => {
+    const name = document.getElementById(`v${v.n}-name`).value || `Vessel ${v.n}`;
+    const type = document.getElementById(`v${v.n}-sensor-type`).value.replace('4-20','4–20');
+    const addr = document.getElementById(`v${v.n}-addr`).value;
+    rows.push([`Vessel ${v.n}`, `${name} · ${v.shape || 'shape —'} · ${type} · addr ${addr}`]);
+  });
+
+  box.innerHTML = rows.map(r =>
+    `<div class="review-row"><span>${r[0]}</span><span>${r[1]}</span></div>`).join('');
 }
 
 pinInputs[0].focus();
